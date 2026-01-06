@@ -107,7 +107,7 @@ void app_main(void)
 				goto end;
 			}
 
-			ESP_LOGD(DEMO_TAG, "GNSS Fix acquired: Lat: %.6f Lon: %.6f, UTC(s): %llu",
+			ESP_LOGI(DEMO_TAG, "GNSS Fix acquired: Lat: %.6f Lon: %.6f, UTC(s): %llu",
 				 current_fix.latitude, current_fix.longitude,
 				 current_fix.utc);
 
@@ -128,7 +128,7 @@ void app_main(void)
 				goto end;
 			}
 
-			ESP_LOGD(DEMO_TAG, "Next pass at %llu (lon %.6f, %s)",
+			ESP_LOGI(DEMO_TAG, "Next pass at %llu (lon %.6f, %s)",
 				 next_pass.t, next_pass.lon,
 				 next_pass.ascending ? "ascending"
 						     : "descending");

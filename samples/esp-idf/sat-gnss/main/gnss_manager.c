@@ -37,6 +37,12 @@ static void gnss_event_handler(void *event_handler_arg,
 
 	gps = (gps_t *)event_data;
 	if (gps == NULL || !gps->valid || gps->fix == GPS_FIX_INVALID) {
+		ESP_LOGW(TAG, "Invalid GPS fix received");
+		ESP_LOGI(TAG, "lat: %f, lon: %f, valid: %d, fix: %d",
+			 gps ? gps->latitude : 0.0,
+			 gps ? gps->longitude : 0.0,
+			 gps ? gps->valid : 0,
+			 gps ? gps->fix : -1);
 		return;
 	}
 
