@@ -1,0 +1,10 @@
+# Copyright (c) 2026 Hubble Network, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+# Hubble
+CONFIG_HUBBLE_SAT_NETWORK=y
+CONFIG_HUBBLE_SAT_NETWORK_PROTOCOL_V1=y
+CONFIG_HUBBLE_NETWORK_KEY_256=y
+
+# Disable BT, sat tests don't need it, keeps the binary small for QEMU
+CONFIG_BT_ENABLED=n
