@@ -27,26 +27,6 @@
 bStatus_t ble_init(void);
 
 /**
- * @brief Start Bluetooth LE advertising.
- *
- * Begins broadcasting advertisement packets. @ref ble_init must have been
- * called successfully before invoking this function.
- *
- * @return SUCCESS or error code on failure.
- */
-bStatus_t ble_adv_start(void);
-
-/**
- * @brief Stop Bluetooth LE advertising.
- *
- * Halts advertisement broadcasting. Safe to call even if advertising is
- * already stopped.
- *
- * @return SUCCESS or error code on failure.
- */
-bStatus_t ble_adv_stop(void);
-
-/**
  * @brief Synchronize time and orbital parameters data.
  *
  * Synchronizes the current time and orbital parameters data from
