@@ -43,7 +43,7 @@ breathe_default_project = "HubbleNetworkSDK"
 primary_domain = "c"
 
 # Tell sphinx what the pygments highlight language should be.
-pygments_sytle = "sphinx"
+pygments_style = "sphinx"
 highlight_language = "none"
 
 # -- Options for HTML output -------------------------------------------------
