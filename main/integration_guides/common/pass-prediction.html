@@ -35,6 +35,7 @@
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="docs-base-path" content="/hubble-device-sdk/">
   <meta name="color-scheme" content="dark light">
+  <meta name="algolia-site-verification" content="5A89F681C1955ED8" />
   
   <noscript id="dark-mode-toggle-stylesheets">
     <link rel="stylesheet" href="../../_static/css/light.css" type="text/css" media="(prefers-color-scheme: light)"/>
@@ -170,6 +171,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../quickstart/esp-idf/index.html">ESP-IDF</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../quickstart/esp-idf/index.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../quickstart/esp-idf/index.html#adding-hubble-network-to-an-esp-idf-project">Adding Hubble Network to an ESP-IDF Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart/esp-idf/index.html#enabling-hubble-modules">Enabling Hubble Modules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../quickstart/esp-idf/index.html#satellite-network-on-esp32-c6-required-phy-blob">Satellite Network on ESP32-C6: Required PHY Blob</a></li>
 </ul>
 </li>
@@ -378,7 +380,7 @@ transmit to the satellite, then repeat.</p>
 
 <span class="w">    </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hubble_sat_next_pass_get</span><span class="p">(</span><span class="n">now_ms</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">device_pos</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pass_info</span><span class="p">);</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">LOG_ERR</span><span class="p">(</span><span class="s">&quot;Failed to get next pass (err %d)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">err</span><span class="p">);</span>
+<span class="w">        </span><span class="n">LOG_ERR</span><span class="p">(</span><span class="s">"Failed to get next pass (err %d)"</span><span class="p">,</span><span class="w"> </span><span class="n">err</span><span class="p">);</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">err</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
@@ -388,7 +390,7 @@ transmit to the satellite, then repeat.</p>
 <span class="w">            </span><span class="n">pass_info</span><span class="p">.</span><span class="n">start</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pass_info</span><span class="p">.</span><span class="n">duration</span><span class="p">,</span>
 <span class="w">            </span><span class="o">&amp;</span><span class="n">device_pos</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pass_info</span><span class="p">);</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">LOG_ERR</span><span class="p">(</span><span class="s">&quot;Failed to get next pass (err %d)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">err</span><span class="p">);</span>
+<span class="w">            </span><span class="n">LOG_ERR</span><span class="p">(</span><span class="s">"Failed to get next pass (err %d)"</span><span class="p">,</span><span class="w"> </span><span class="n">err</span><span class="p">);</span>
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">err</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
