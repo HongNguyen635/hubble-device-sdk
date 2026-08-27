@@ -8,7 +8,10 @@
 #ifndef PORT_SAT_ESP_SAT_CONFIG_H
 #define PORT_SAT_ESP_SAT_CONFIG_H
 
-#if defined(CONFIG_IDF_TARGET_ESP32C6)
+#if defined(CONFIG_IDF_TARGET_ESP32C6) || defined(CONFIG_IDF_TARGET_ESP32S31)
+#define ESP_RADIO_OFF_DELAY_US 450U
+#define ESP_RADIO_ON_DELAY_US  70U
+
 #define ESP_STEP_SCALE(_step)           ((_step) * 4)
 
 /* The center frequency for channel 0 is 2482208625
@@ -22,6 +25,9 @@
 #define HUBBLE_CHANNEL_OFFSET(_channel) (((_channel) * 64) + 489)
 
 #elif defined(CONFIG_IDF_TARGET_ESP32S3)
+
+#define ESP_RADIO_OFF_DELAY_US 770U
+#define ESP_RADIO_ON_DELAY_US  20U
 
 #define ESP_STEP_SCALE(_step)           ((_step) * 5)
 

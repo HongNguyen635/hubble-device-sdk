@@ -23,8 +23,6 @@
 #include "esp_sat_config.h"
 #include "sat_board.h"
 
-#define ESP_RADIO_OFF_DELAY_US 450U
-#define ESP_RADIO_ON_DELAY_US  70U
 #define MAX_TX_POWER_DBM       20U
 
 /**
@@ -54,8 +52,13 @@ uint8_t _sat_power_dbm = MAX_TX_POWER_DBM;
 
 /* Espressif PHY API */
 extern void phy_set_step_01k(bool step_01k);
-extern void phy_set_freq(uint16_t freq_mhz, int offset);
 extern void phy_tx_tone(bool txtone_en, bool bt_mode, uint8_t pwr_index);
+
+#ifdef CONFIG_IDF_TARGET_ESP32S31
+extern void phy_set_freq_01k(uint16_t freq_mhz, int offset);
+#else
+extern void phy_set_freq(uint16_t freq_mhz, int offset);
+#endif
 
 static int _esp_err_to_errno(esp_err_t status)
 {
@@ -179,7 +182,12 @@ static int _radio_cw_start(uint16_t step, uint32_t delay, uint32_t duration_us)
 	int ret;
 
 	/* Symbol on time */
+#ifdef CONFIG_IDF_TARGET_ESP32S31
+	phy_set_freq_01k(HUBBLE_BASE_FREQUENCY, step);
+#else
 	phy_set_freq(HUBBLE_BASE_FREQUENCY, step);
+#endif
+
 	phy_tx_tone(true, true, _sat_power_dbm);
 
 	ret = _timer_start(duration_us);
@@ -320,7 +328,13 @@ int hubble_sat_board_power_set(int8_t power)
 int hubble_sat_board_cw_start(uint8_t channel)
 {
 	uint16_t step = ESP_STEP_SCALE(32 + HUBBLE_CHANNEL_OFFSET(channel));
+
+#ifdef CONFIG_IDF_TARGET_ESP32S31
+	phy_set_freq_01k(HUBBLE_BASE_FREQUENCY, step);
+#else
 	phy_set_freq(HUBBLE_BASE_FREQUENCY, step);
+#endif
+
 	phy_tx_tone(true, true, _sat_power_dbm);
 	return 0;
 }
