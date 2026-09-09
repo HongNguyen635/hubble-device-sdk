@@ -7,10 +7,24 @@
 #ifndef PORT_ESP_SAT_RADIO_CONFIG_H
 #define PORT_ESP_SAT_RADIO_CONFIG_H
 
+/*
+ * Compensate for on/off delay
+ *
+ * TODO: numbers are found experimentally, need to
+ * verify with Espressif for the right values.
+ */
 #if defined(CONFIG_IDF_TARGET_ESP32C6)
-#define ESP_RADIO_OFF_DELAY_US          450U
-#define ESP_RADIO_ON_DELAY_US           70U
+#define ESP_RADIO_OFF_DELAY_US 450U
+#define ESP_RADIO_ON_DELAY_US  70U
 
+#elif defined(CONFIG_IDF_TARGET_ESP32S31)
+#define ESP_RADIO_OFF_DELAY_US 670U
+#define ESP_RADIO_ON_DELAY_US  20U
+
+#endif /* CONFIG_IDF_TARGET_ESP32C6 */
+
+/* Step and frequency calculation */
+#if defined(CONFIG_IDF_TARGET_ESP32C6) || defined(CONFIG_IDF_TARGET_ESP32S31)
 #define ESP_STEP_SCALE(_step)           ((_step) * 4)
 
 /* The center frequency for channel 0 is 2482208625

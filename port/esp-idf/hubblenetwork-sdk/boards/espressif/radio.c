@@ -52,8 +52,14 @@ uint8_t _sat_power_dbm = MAX_TX_POWER_DBM;
 
 /* Espressif PHY API */
 extern void phy_set_step_01k(bool step_01k);
-extern void phy_set_freq(uint16_t freq_mhz, int offset);
 extern void phy_tx_tone(bool txtone_en, bool bt_mode, uint8_t pwr_index);
+
+#if defined(CONFIG_IDF_TARGET_ESP32S31)
+extern void phy_set_freq_01k(uint16_t freq_mhz, int offset);
+#define phy_set_freq(freq_mhz, offset) phy_set_freq_01k(freq_mhz, offset)
+#else
+extern void phy_set_freq(uint16_t freq_mhz, int offset);
+#endif /* CONFIG_IDF_TARGET_ESP32S31 */
 
 static int _esp_err_to_errno(esp_err_t status)
 {
