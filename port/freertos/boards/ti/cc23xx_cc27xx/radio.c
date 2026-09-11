@@ -211,6 +211,12 @@ int hubble_sat_board_init(void)
 
 int hubble_sat_board_enable(void)
 {
+	RCL_CmdGenericFs fs_cmd = RCL_CmdGenericFs_Default();
+	RCL_CommandStatus ret;
+
+	fs_cmd.rfFrequency = HUBBLE_BASE_FREQUENCY;
+	fs_cmd.fsType = RCL_FsType_Tx;
+
 #if defined(USE_DMM_OVRDE)
 	DMMSch_setBlockModeOn(DMMPolicy_StackRole_BlePeripheral);
 	DMMSch_setBlockModeOff(DMMPolicy_StackRole_Custom1);
@@ -218,25 +224,42 @@ int hubble_sat_board_enable(void)
 	/* Block wait for completion */
 	while (DMMSch_getBlockModeStatus(DMMPolicy_StackRole_Custom1)) {
 	};
+
+	DMMSch_RCL_Command_submit(rcl_handle, &fs_cmd);
+	ret = DMMSch_RCL_Command_pend(&fs_cmd);
+#else
+	RCL_Command_submit(rcl_handle, &fs_cmd);
+	ret = RCL_Command_pend(&fs_cmd);
 #endif
 
-	return 0;
+	return ret != RCL_CommandStatus_Finished ? -EIO : 0;
+	// return 0;
 }
 
 int hubble_sat_board_disable(void)
 {
+	RCL_CmdGenericFsOff fs_off_cmd = RCL_CmdGenericFsOff_Default();
+	RCL_CommandStatus ret;
+
 #if defined(USE_DMM_OVRDE)
+	DMMSch_RCL_Command_submit(rcl_handle, &fs_off_cmd);
+	ret = DMMSch_RCL_Command_pend(&fs_off_cmd);
+
 	DMMSch_setBlockModeOn(DMMPolicy_StackRole_Custom1);
 	DMMSch_setBlockModeOff(DMMPolicy_StackRole_BlePeripheral);
 
 	/* Block wait for completion */
 	while (DMMSch_getBlockModeStatus(DMMPolicy_StackRole_BlePeripheral)) {
 	};
+#else
+	RCL_Command_submit(rcl_handle, &fs_off_cmd);
+	ret = RCL_Command_pend(&fs_off_cmd);
 #endif
 
 	/* TODO: should we close and open rcl every time or just once during init? */
 
-	return 0;
+	return ret != RCL_CommandStatus_Finished ? -EIO : 0;
+	// return 0;
 }
 
 int hubble_sat_board_packet_send(const struct hubble_sat_packet_frames *packet)
