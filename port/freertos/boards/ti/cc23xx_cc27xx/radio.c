@@ -168,7 +168,14 @@ static inline int _board_init(void)
 	rclPacketTxCmdGenericTxTest_ble_custom.common.status =
 		RCL_CommandStatus_Idle;
 
-	/* No whitening, on repeated word, freq synth off after cmd, enable cw */
+	/*
+	 * No whitening, on repeated word, freq synth on after cmd, enable cw.
+	 *
+	 * TODO: turn off FS after tx (per called to enable/disable, not per
+	 * symbol tx) degrades performance. Keeping it on to avoid issue but
+	 * will consume current. Find a solution to this, or make a decision
+	 * about the trade off between current consumption and performance.
+	 */
 	rclPacketTxCmdGenericTxTest_ble_custom.config.whitenMode = 0U;
 	rclPacketTxCmdGenericTxTest_ble_custom.config.txWord = 0U;
 	rclPacketTxCmdGenericTxTest_ble_custom.config.fsOff = 0U;
