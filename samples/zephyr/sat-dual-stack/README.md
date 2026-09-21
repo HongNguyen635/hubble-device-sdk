@@ -108,7 +108,7 @@ Install the Python dependencies for the *dual-stack-companion.py* provisioning
 script:
 
 ```bash
-pip install -r ../../../tools/requirements-companion.txt
+pip install -r tools/requirements-companion.txt
 ```
 
 Then set your Hubble API token and run the script:
@@ -116,14 +116,14 @@ Then set your Hubble API token and run the script:
 ```bash
 export HUBBLE_API_TOKEN=<your-hubble-api-token>
 
-python ../../../tools/dual-stack-companion.py
+python tools/dual-stack-companion.py
 ```
 
 By default the device location is determined via IP geolocation. To provision an
 explicit location, pass the latitude and longitude (in degrees) with `--location`:
 
 ```bash
-python ../../../tools/dual-stack-companion.py --location <lat> <lon>
+python tools/dual-stack-companion.py --location <lat> <lon>
 ```
 
 ## Program Flow
