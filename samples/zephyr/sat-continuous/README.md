@@ -50,7 +50,7 @@ there is no pre-build script and no generated source.
 
 ```sh
 west blobs fetch hubblenetwork-sdk    # once, for Nordic targets
-west build -b nrf54l15dk/nrf54l15/cpuapp . -- -DCONFIG_SAMPLE_HUBBLE_KEY="<your base64 key>"
+west build -b nrf54l15dk/nrf54l15/cpuapp . -- -DCONFIG_SAMPLE_HUBBLE_KEY=\"<your base64 key>\"
 west flash
 ```
 
