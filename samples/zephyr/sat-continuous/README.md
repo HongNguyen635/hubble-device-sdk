@@ -74,15 +74,18 @@ After flashing, the device builds a satellite packet and transmits it every
 
 ## Supported boards
 
-A board is wired up by providing a `boards/<board>.conf` (and optionally an
-overlay). Boards that supply their own satellite radio support set
-`CONFIG_SAMPLE_PROVIDE_SAT_BOARD_SUPPORT=n`; otherwise the sample mocks the
-board radio APIs so it still builds (e.g. on `native_sim`).
+Boards that need extra devicetree tweaks supply a `boards/<board>.overlay` (for
+example `boards/thingy53_nrf5340_cpunet.overlay`, which hooks the FEM up to the
+radio).
+
+Build with `-DCONFIG_SAMPLE_PROVIDE_SAT_BOARD_SUPPORT=y` to have the sample mock
+the board radio APIs instead, so it still builds on targets without one (e.g.
+`native_sim`).
 
 | Board | Notes |
 |-------|-------|
 | `nrf54l15dk/nrf54l15/cpuapp` | Nordic nRF54L15 — needs the nRF54 blob |
-| `nrf21540dk` | Nordic nRF52840 + FEM — needs the nRF52 blob |
+| `nrf21540dk/nrf52840` | Nordic nRF52840 + FEM — needs the nRF52 blob |
 | `thingy53/nrf5340/cpunet` | Nordic nRF5340 net core — needs the nRF53 blob |
 | `xg24_rb4187c` | Silicon Labs xG24 — uses the Gecko custom radio PHY |
 | `xiao_mg24` | Seeed XIAO MG24 — uses the Gecko custom radio PHY |
@@ -100,7 +103,7 @@ board radio APIs so it still builds (e.g. on `native_sim`).
   counters. Disabled (`n`) in `prj.conf` for this sample, which transmits
   continuously and needs no NVS.
 - `CONFIG_SAMPLE_SAT_TX_INTERVAL_SECONDS`: seconds the sample sleeps between
-  consecutive satellite transmissions (default `5`).
-- `CONFIG_SAMPLE_PROVIDE_SAT_BOARD_SUPPORT`: when `n`, the board provides real
-  satellite radio support; when `y` (default), the sample mocks the board radio
+  consecutive satellite transmissions (default `10`).
+- `CONFIG_SAMPLE_PROVIDE_SAT_BOARD_SUPPORT`: when `n` (default), the board provides real
+  satellite radio support; when `y`, the sample mocks the board radio
   APIs.
