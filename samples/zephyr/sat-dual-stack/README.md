@@ -20,6 +20,23 @@ The application:
 - A board with Bluetooth LE support. Satellite-capable boards transmit for
   real; other boards mock the satellite radio (see
   `CONFIG_SAMPLE_PROVIDE_SAT_BOARD_SUPPORT`).
+- The prebuilt radio blob for your target (see [Radio blobs](#radio-blobs)).
+
+## Radio blobs
+
+The satellite radio libraries are **not** fetched by `west update`. Pull them in
+once after setting up the workspace:
+
+```sh
+west blobs fetch hubblenetwork-sdk
+```
+
+Silicon Labs targets use RAIL, which needs to be fetched along with
+SiLabs HAL:
+
+```sh
+west blobs fetch hal_silabs
+```
 
 ## Configuration
 
@@ -29,7 +46,7 @@ Options live under *"Hubble Network Dual Stack Sample options"* in `menuconfig`:
 | ----------------------------------------- | ------- | -------------------------------------------------------------------------------------------- |
 | `CONFIG_HUBBLE_DEVICE_KEY`                | `""`    | Hubble device cryptographic key, base64-encoded.                                             |
 | `CONFIG_HUBBLE_SAMPLE_DEBUG`              | `n`     | Schedule the satellite transmission 120 s after boot instead of waiting for the next pass.   |
-| `CONFIG_SAMPLE_PROVIDE_SAT_BOARD_SUPPORT` | `y`     | Provide mock satellite board APIs. Disable on boards that implement the real satellite radio.|
+| `CONFIG_SAMPLE_PROVIDE_SAT_BOARD_SUPPORT` | `n`     | Provide mock satellite board APIs. Enable on boards that do not implement the real satellite radio.|
 
 ## Building
 

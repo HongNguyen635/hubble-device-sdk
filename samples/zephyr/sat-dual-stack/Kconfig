@@ -18,7 +18,7 @@ config HUBBLE_SAMPLE_DEBUG
 	of until a satellite pass is overhead.
 
 config SAMPLE_PROVIDE_SAT_BOARD_SUPPORT
-    bool "Provide satellite board suport for test purpose"
+    bool "Provide satellite board support for test purpose"
     help
 	Targets that don't support satellite must select it.
 
