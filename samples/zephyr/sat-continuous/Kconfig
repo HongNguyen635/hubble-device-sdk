@@ -4,7 +4,7 @@
 menu "Hubble Network Satellite Sample options"
 
 config SAMPLE_PROVIDE_SAT_BOARD_SUPPORT
-    bool "Provide satellite board suport for test purpose"
+    bool "Provide satellite board support for test purpose"
     help
 	Targets that support satellite must select it, otherwise
 	board APIs will be mocked in the sample.
