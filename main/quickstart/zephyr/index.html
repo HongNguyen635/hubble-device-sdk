@@ -309,6 +309,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../releases/index.html#migration-and-upgrade-guidance">Migration and Upgrade Guidance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../releases/index.html#release-notes">Release Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/3.1.html">Release 3.1.0</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../releases/3.0.html">Release 3.0.0</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../releases/2.0.html">Release 2.0.0</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../releases/1.0.html">Release 1.0.0</a></li>
@@ -469,6 +470,12 @@ the boilerplate code needed for building Zephyr applications.</p>
 <li><p>Install Python dependencies:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>west<span class="w"> </span>packages<span class="w"> </span>pip<span class="w"> </span>--install
 pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>~/hubblenetwork-workspace/zephyr/scripts/requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p>Install the Zephyr SDK:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/hubblenetwork-workspace/zephyr
+west<span class="w"> </span>sdk<span class="w"> </span>install
 </pre></div>
 </div>
 </li>

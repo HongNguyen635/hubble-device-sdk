@@ -1,0 +1,81 @@
+Handling the Hubble Device Key
+******************************
+
+There are two ways to get the device key into your application, both of which
+are demonstrated in the samples.
+
+Embed the Key with embed_key_time.py
+===========================
+
+This is the recommended method for real (non-test) applications. 
+
+Use the ``tools/embed_key_time.py`` script to generate the key and the current
+Unix time as C source:
+
+.. code-block:: bash
+
+   python tools/embed_key_time.py -b /path/to/key -o main/
+
+This writes ``key.c`` and ``time.c`` into ``main/``, defining ``master_key``
+and ``unix_time``. Both symbols are declared ``static``, so include the
+generated ``.c`` files directly into the translation unit that uses them
+rather than compiling them separately:
+
+.. code-block:: c
+
+   #include "time.c"
+   #include "key.c"
+
+   /* ... */
+
+   ret = hubble_init(unix_time, master_key);
+
+See ``samples/esp-idf/ble-beacon`` for an example.
+
+Read the Key from Kconfig
+====================================
+
+This should only be done for debugging or test purposes, real applications should
+protect the key by using embed_key_time.py 
+
+Store the base64-encoded key in ``sdkconfig.defaults``, or set it with
+``idf.py menuconfig``:
+
+.. code-block:: kconfig
+
+   # Hubble Device Key
+   CONFIG_HUBBLE_DEVICE_KEY="your-device-key"
+
+Decode it at runtime before handing it to ``hubble_init()``. This is the case
+that requires ``mbedtls`` in your component's ``PRIV_REQUIRES``:
+
+.. code-block:: c
+
+   #include "mbedtls/base64.h"
+
+   static uint8_t _hubble_key[CONFIG_HUBBLE_KEY_SIZE];
+
+   /* ... */
+
+   if (strlen(CONFIG_HUBBLE_DEVICE_KEY) != 0) {
+       size_t outlen = 0;
+
+       ret = mbedtls_base64_decode(
+           _hubble_key, sizeof(_hubble_key), &outlen,
+           (const unsigned char *)CONFIG_HUBBLE_DEVICE_KEY,
+           strlen(CONFIG_HUBBLE_DEVICE_KEY));
+
+       if (ret != 0) {
+           ESP_LOGE(APP_TAG, "Invalid key provided!");
+           return;
+       }
+
+       if (outlen != sizeof(_hubble_key)) {
+           ESP_LOGE(APP_TAG, "Invalid key length provided!");
+           return;
+       }
+   }
+
+   ret = hubble_init(unix_time_ms, _hubble_key);
+
+See ``samples/esp-idf/sat-dual-stack`` or ``samples/esp-idf/sat-continuous`` for an example.
