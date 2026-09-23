@@ -149,14 +149,12 @@ In your ``main/CMakeLists.txt``, declare the required component dependencies:
 .. code-block:: cmake
 
    idf_component_register(SRCS ${YOUR_APP_SOURCES}
-                          PRIV_REQUIRES bt mbedtls nvs_flash esp_timer hubblenetwork-sdk
+                          PRIV_REQUIRES bt nvs_flash esp_timer hubblenetwork-sdk
                           INCLUDE_DIRS ".")
 
 ``bt`` and ``hubblenetwork-sdk`` are required for the dual-stack. ``nvs_flash``
 is required by NimBLE. ``esp_timer`` is used in the reference sample for pass
-scheduling, however, any timer peripheral works. ``mbedtls`` is only required
-if your application decodes a base64-encoded key at runtime, as described in
-`Handling the Hubble Device Key`_.
+scheduling, however, any timer peripheral works.
 
 
 .. include:: ../common/data-requirements.rst

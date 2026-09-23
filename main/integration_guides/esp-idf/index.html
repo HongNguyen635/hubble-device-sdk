@@ -525,15 +525,13 @@ CONFIG_LOG_VERSION_2=y
 <h3>Register Application Components<a class="headerlink" href="#register-application-components" title="Link to this heading"></a></h3>
 <p>In your <code class="docutils literal notranslate"><span class="pre">main/CMakeLists.txt</span></code>, declare the required component dependencies:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">idf_component_register</span><span class="p">(</span><span class="s">SRCS</span><span class="w"> </span><span class="o">${</span><span class="nv">YOUR_APP_SOURCES</span><span class="o">}</span>
-<span class="w">                       </span><span class="s">PRIV_REQUIRES</span><span class="w"> </span><span class="s">bt</span><span class="w"> </span><span class="s">mbedtls</span><span class="w"> </span><span class="s">nvs_flash</span><span class="w"> </span><span class="s">esp_timer</span><span class="w"> </span><span class="s">hubblenetwork-sdk</span>
+<span class="w">                       </span><span class="s">PRIV_REQUIRES</span><span class="w"> </span><span class="s">bt</span><span class="w"> </span><span class="s">nvs_flash</span><span class="w"> </span><span class="s">esp_timer</span><span class="w"> </span><span class="s">hubblenetwork-sdk</span>
 <span class="w">                       </span><span class="s">INCLUDE_DIRS</span><span class="w"> </span><span class="s2">"."</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">bt</span></code> and <code class="docutils literal notranslate"><span class="pre">hubblenetwork-sdk</span></code> are required for the dual-stack. <code class="docutils literal notranslate"><span class="pre">nvs_flash</span></code>
 is required by NimBLE. <code class="docutils literal notranslate"><span class="pre">esp_timer</span></code> is used in the reference sample for pass
-scheduling, however, any timer peripheral works. <code class="docutils literal notranslate"><span class="pre">mbedtls</span></code> is only required
-if your application decodes a base64-encoded key at runtime, as described in
-<a href="#id3"><span class="problematic" id="id4">`Handling the Hubble Device Key`_</span></a>.</p>
+scheduling, however, any timer peripheral works.</p>
 </section>
 </section>
 <section id="preparing-for-satellite-transmission">
