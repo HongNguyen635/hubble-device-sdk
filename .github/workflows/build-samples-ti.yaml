@@ -21,7 +21,7 @@ jobs:
     name: Build TI Samples
     runs-on: ubuntu-24.04
     container:
-      image: ghcr.io/hubblenetwork/ti-ci-docker:latest
+      image: ghcr.io/hubblenetwork/vendor-ci-docker:ti-freertos-latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
