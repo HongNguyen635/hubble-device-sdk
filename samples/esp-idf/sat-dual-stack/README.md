@@ -8,7 +8,7 @@ This sample demonstrates how to run **BLE and the Hubble Satellite Network** on 
 - [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html)
 - ESP32-C6 hardware
 - [ESP32-C6 Satellite PHY Blob](https://github.com/HubbleNetwork/hubble-device-sdk/blob/main/docs/integration_guides/esp-idf/index.rst#fetch-the-satellite-phy-blob-esp32-c6)
-  <!-- TODO: Remove this requirement once Espressif ships the API upstream. -->
+  (ESP-IDF v6.0 only; not needed on v6.1 or later)
 
 ## Overview
 
