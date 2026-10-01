@@ -52,7 +52,7 @@ to ``main/idf_component.yml``:
 .. code-block:: yaml
 
    dependencies:
-     hubblenetwork/hubble-device-sdk: ^3.0.0
+     hubblenetwork/hubble-device-sdk: ^3.1.0
 
 .. note::
 
