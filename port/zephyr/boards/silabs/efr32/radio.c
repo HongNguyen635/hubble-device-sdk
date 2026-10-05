@@ -161,7 +161,7 @@ static int _radio_channel_set(uint8_t channel)
 static void rail_on_channel_config(sl_rail_handle_t rail_handle,
 				   const sl_rail_channel_config_entry_t *entry)
 {
-	sl_rail_util_pa_on_channel_config_change(_rail_handle, entry);
+	sl_rail_util_pa_on_channel_config_change(rail_handle, entry);
 }
 
 static int _rail_radio_init(void)
