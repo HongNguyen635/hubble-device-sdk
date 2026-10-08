@@ -6,17 +6,18 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FreeRTOS &mdash; Hubble Device SDK Documentation</title>
+  <title>SiLabs Simplicity SDK &mdash; Hubble Device SDK Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
       <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=ae58f23e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
     <link rel="shortcut icon" href="../../_static/hubble.png"/>
-    <link rel="canonical" href="https://HongNguyen635.github.io/hubble-device-sdk/main/quickstart/freertos/index.html" />
+    <link rel="canonical" href="https://HongNguyen635.github.io/hubble-device-sdk/main/quickstart/silabs/index.html" />
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=2709fde1"></script>
@@ -30,11 +31,12 @@
       <script>let toggleOpenOnPrint = 'true';</script>
       <script src="../../_static/togglebutton.js?v=b8b12719"></script>
       <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script src="../../_static/tabs.js?v=3030b3cb"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="TI SDK (SysConfig)" href="../ti/index.html" />
-    <link rel="prev" title="Zephyr" href="../zephyr/index.html" />
+    <link rel="next" title="ESP-IDF" href="../esp-idf/index.html" />
+    <link rel="prev" title="TI SDK (SysConfig)" href="../ti/index.html" />
   <meta name="docs-base-path" content="/hubble-device-sdk/">
   <meta name="color-scheme" content="dark light">
   <meta name="algolia-site-verification" content="5A89F681C1955ED8" />
@@ -156,9 +158,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../zephyr/index.html#using-hubble-network-as-the-manifest-repository">Using Hubble Network as the manifest repository</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">FreeRTOS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adding-hubble-network-to-freertos">Adding Hubble Network to FreeRTOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freertos/index.html">FreeRTOS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../freertos/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../freertos/index.html#adding-hubble-network-to-freertos">Adding Hubble Network to FreeRTOS</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../ti/index.html">TI SDK (SysConfig)</a><ul>
@@ -170,12 +172,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../ti/index.html#building-the-application">Building the Application</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../silabs/index.html">SiLabs Simplicity SDK</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../silabs/index.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../silabs/index.html#installing-the-extension">Installing the Extension</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../silabs/index.html#adding-hubble-network-to-a-project">Adding Hubble Network to a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../silabs/index.html#configuration">Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../silabs/index.html#building-and-running-your-first-application">Building and Running Your First Application</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SiLabs Simplicity SDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-extension">Installing the Extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-hubble-network-to-a-project">Adding Hubble Network to a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-and-running-your-first-application">Building and Running Your First Application</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../esp-idf/index.html">ESP-IDF</a><ul>
@@ -370,7 +372,7 @@
   
      <li><a href="../index.html">Platform Setup</a> &raquo;</li>
   
-  <li>FreeRTOS</li>
+  <li>SiLabs Simplicity SDK</li>
 
 
   <li class="wy-breadcrumbs-aside">
@@ -386,99 +388,145 @@
   
            <div itemprop="articleBody">
              
-  <section id="freertos">
-<span id="freertos-quick-start"></span><h1>FreeRTOS<a class="headerlink" href="#freertos" title="Link to this heading"></a></h1>
-<p>This guide provides a quick overview of how to integrate the
-Hubble Device SDK with FreeRTOS. Due to differences between various
-FreeRTOS vendors, the SDK provides mechanisms to integrate it into the
-application build system. However, this integration requires some work
-from the user to adapt it to their specific environment.</p>
+  <section id="silabs-simplicity-sdk">
+<span id="silabs-quick-start"></span><h1>SiLabs Simplicity SDK<a class="headerlink" href="#silabs-simplicity-sdk" title="Link to this heading"></a></h1>
+<p>This guide explains how to integrate the Hubble Device SDK into a
+<a class="reference external" href="https://www.silabs.com/developer-tools/simplicity-studio">Simplicity SDK</a>
+(SiSDK) project. The SDK ships as a Simplicity SDK extension
+(<code class="docutils literal notranslate"><span class="pre">hubble-network.hubble-device-sdk</span></code>). Projects add it through their
+<code class="docutils literal notranslate"><span class="pre">.slcp</span></code> file, and the SLC tooling pulls in the SDK sources, include paths,
+and configuration.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only the Hubble Terrestrial (BLE) Network is currently supported on
+Simplicity SDK FreeRTOS.</p>
+</div>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Simplicity Studio</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Command line</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><ul class="simple">
+<li><p><a class="reference external" href="https://www.silabs.com/developer-tools/simplicity-studio">Simplicity Studio 6</a>
+with the Simplicity SDK installed.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">slc-cli</span></code> tool, which is still needed to install the extension
+(see <a class="reference internal" href="#silabs-install-extension"><span class="std std-ref">Installing the Extension</span></a>).</p></li>
+</ul>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p><a class="reference external" href="https://github.com/SiliconLabs/simplicity_sdk">Simplicity SDK</a>,
+<code class="docutils literal notranslate"><span class="pre">slc-cli</span></code>, the Arm GNU toolchain (<code class="docutils literal notranslate"><span class="pre">gcc-arm-none-eabi</span></code>), and
+Simplicity Commander (<code class="docutils literal notranslate"><span class="pre">commander</span></code>), installed with the
+<a class="reference external" href="https://docs.silabs.com/simplicity-installer-slt/latest/slt-getting-started-slt-cli/first-time-installation-setup">Silicon Labs Tool (SLT)</a>.</p>
+</div></div>
 <ul class="simple">
-<li><p>FreeRTOS installed and configured for your platform.</p></li>
-<li><p>A working build system (e.g., Makefile-based).</p></li>
+<li><p>A Silicon Labs board with Bluetooth® Low Energy support.</p></li>
+<li><p>The Hubble Device SDK cloned or added as a submodule.</p></li>
 <li><p>Device <code class="docutils literal notranslate"><span class="pre">key</span></code> (generated when you register a new device to your organization
 through the Hubble Cloud API).</p></li>
 </ul>
+<p>Set the following environment variables before continuing, e.g.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">SISDK</span><span class="o">=</span>/path/to/simplicity_sdk
+<span class="nb">export</span><span class="w"> </span><span class="nv">SLC</span><span class="o">=</span>/path/to/slc_cli/slc
+<span class="nb">export</span><span class="w"> </span><span class="nv">COMMANDER</span><span class="o">=</span>/path/to/commander
+<span class="nb">export</span><span class="w"> </span><span class="nv">HUBBLE_SDK</span><span class="o">=</span>/path/to/hubble-device-sdk
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>See <a class="reference external" href="https://docs.silabs.com/ssv6ug/6.2.0/ssv6-tricks-tips/#useful-paths">Useful paths</a>
+for where Simplicity Studio and SLT install these tools.</p>
+</div>
 </section>
-<section id="adding-hubble-network-to-freertos">
-<h2>Adding Hubble Network to FreeRTOS<a class="headerlink" href="#adding-hubble-network-to-freertos" title="Link to this heading"></a></h2>
-<ul>
-<li><p>Include Hubble Device SDK in your application</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>https://github.com/HubbleNetwork/hubble-device-sdk
-</pre></div>
-</div>
-</li>
-<li><p>Provide a configuration header</p>
-<blockquote>
-<div><ul>
-<li><p>Create a configuration header in your application with the
-<code class="docutils literal notranslate"><span class="pre">CONFIG_HUBBLE_*</span></code> macros you want to customize. For example:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define CONFIG_HUBBLE_BLE_NETWORK  0</span>
-<span class="cp">#define CONFIG_HUBBLE_SAT_NETWORK  1</span>
-<span class="cp">#define CONFIG_HUBBLE_NETWORK_KEY_256</span>
-</pre></div>
-</div>
-</li>
-<li><p>Point the build system to your config file by setting
-<code class="docutils literal notranslate"><span class="pre">HUBBLENETWORK_SDK_CONFIG</span></code> before including the Makefile fragment:</p>
-<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span><span class="nv">HUBBLENETWORK_SDK_CONFIG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>MY_APP_DIR<span class="k">)</span>/hubble_config.h
-</pre></div>
-</div>
-</li>
-<li><p>If <code class="docutils literal notranslate"><span class="pre">HUBBLENETWORK_SDK_CONFIG</span></code> is not set, the SDK defaults to
-<code class="docutils literal notranslate"><span class="pre">port/freertos/config.h</span></code>, which serves as a reference listing all
-available options with their default values.</p></li>
-<li><p>All symbols defined in the config file will be available at build time
-for all objects compiled using <code class="docutils literal notranslate"><span class="pre">HUBBLENETWORK_SDK_FLAGS</span></code>.</p></li>
-</ul>
-</div></blockquote>
-</li>
-<li><p>Since there is no standard cryptographic API, the application has to use one of
-the implementations available or implement the following APIs:</p>
-<ul class="simple">
-<li><p><code class="xref c c-func docutils literal notranslate"><span class="pre">hubble_crypto_init()</span></code>.</p></li>
-<li><p><code class="xref c c-func docutils literal notranslate"><span class="pre">hubble_crypto_cmac()</span></code>.</p></li>
-<li><p><code class="xref c c-func docutils literal notranslate"><span class="pre">hubble_crypto_aes_ctr()</span></code>.</p></li>
-<li><p><code class="xref c c-func docutils literal notranslate"><span class="pre">hubble_crypto_zeroize()</span></code>.</p></li>
-</ul>
-</li>
-<li><p>Include the Makefile fragment</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Add the provided Makefile fragment
-<code class="docutils literal notranslate"><span class="pre">port/freertos/hubblenetwork-sdk.mk</span></code> to your application’s build
-system.</p></li>
-<li><p>This fragment does not build any object files directly but provides:
-- The list of source files to be built: <code class="docutils literal notranslate"><span class="pre">HUBBLENETWORK_SDK_SOURCES</span></code>.
-- The flags to be used during compilation: <code class="docutils literal notranslate"><span class="pre">HUBBLENETWORK_SDK_FLAGS</span></code>.</p></li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-<p>Example of including the Makefile fragment:</p>
-<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span><span class="c"># Hubble Device SDK</span>
+<section id="installing-the-extension">
+<span id="silabs-install-extension"></span><h2>Installing the Extension<a class="headerlink" href="#installing-the-extension" title="Link to this heading"></a></h2>
+<p>SLC discovers extensions under the Simplicity SDK’s <code class="docutils literal notranslate"><span class="pre">extension</span></code> directory.
+Link the Hubble Device SDK there and register both the SDK and the extension
+as trusted:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$SISDK</span>/extension
+ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$HUBBLE_SDK</span><span class="w"> </span><span class="nv">$SISDK</span>/extension/hubble-device-sdk
 
-<span class="nv">HUBBLENETWORK_SDK_CONFIG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>MY_APP_DIR<span class="k">)</span>/hubble_config.h
-<span class="cp">include path/to/hubblenetwork-sdk/port/freertos/hubblenetwork-sdk.mk</span>
-
-<span class="cp">define HUBBLE_RULE</span>
-<span class="nf">$(basename $(notdir $(1))).obj</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">1</span><span class="k">)</span>
-<span class="w">     </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>HUBBLENETWORK_SDK_FLAGS<span class="k">)</span><span class="w"> </span>-c<span class="w"> </span><span class="nv">$$</span>&lt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">$$</span>@
-<span class="cp">endef</span>
-
-<span class="k">$(</span><span class="nv">foreach</span> <span class="nv">source_file</span>,<span class="k">$(</span><span class="nv">HUBBLENETWORK_SDK_SOURCES</span><span class="k">)</span>,<span class="k">$(</span><span class="nv">eval</span> <span class="k">$(</span><span class="nv">call</span> <span class="nv">HUBBLE_RULE</span>,<span class="k">$(</span><span class="nv">source_file</span><span class="k">))))</span>
-
-<span class="c"># Hubble Device SDK END</span>
-</pre></div>
-</div>
-<section id="build-the-application">
-<h3>Build the application<a class="headerlink" href="#build-the-application" title="Link to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-C<span class="w"> </span>/path/to/your/application
+<span class="nv">$SLC</span><span class="w"> </span>configuration<span class="w"> </span>--sdk<span class="w"> </span><span class="nv">$SISDK</span>
+<span class="nv">$SLC</span><span class="w"> </span>signature<span class="w"> </span>trust<span class="w"> </span>--sdk<span class="w"> </span><span class="nv">$SISDK</span>
+<span class="nv">$SLC</span><span class="w"> </span>signature<span class="w"> </span>trust<span class="w"> </span>-extpath<span class="w"> </span><span class="nv">$SISDK</span>/extension/hubble-device-sdk
 </pre></div>
 </div>
 </section>
+<section id="adding-hubble-network-to-a-project">
+<h2>Adding Hubble Network to a Project<a class="headerlink" href="#adding-hubble-network-to-a-project" title="Link to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">Simplicity Studio</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Command line</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><ol class="arabic">
+<li><p>Open your project’s <code class="docutils literal notranslate"><span class="pre">.slcp</span></code> file to launch the Project Configurator.</p>
+<img alt="Opening the project's .slcp file in Simplicity Studio" class="align-center step-image" src="../../_images/QuickStart_Silabs_OpenProject.webp" />
+</li>
+<li><p>Go to <strong>Software Components</strong> and search for <strong>Hubble</strong>.</p>
+<img alt="Searching for Hubble in Software Components" class="align-center step-image" src="../../_images/QuickStart_Silabs_SoftwareComponents.webp" />
+</li>
+<li><p>Select <strong>Hubble Device SDK Component</strong> (under <strong>Hubble</strong> → <strong>BLE</strong>)
+and click <strong>Install</strong>.</p>
+<img alt="Installing the Hubble Device SDK Component" class="align-center step-image" src="../../_images/QuickStart_Silabs_Install.webp" />
+</li>
+</ol>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><p>Declare the extension in your project’s <code class="docutils literal notranslate"><span class="pre">.slcp</span></code> file and add the
+Hubble component:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sdk_extension</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># change '3.1.0' to the version of the Hubble Device SDK you installed</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hubble-device-sdk</span>
+<span class="w">    </span><span class="nt">vendor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hubble-network</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.1.0</span>
+
+<span class="nt">component</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hubble-device-sdk-component</span>
+<span class="w">    </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hubble-device-sdk</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<p>The SDK is configured through <code class="docutils literal notranslate"><span class="pre">hubble_config.h</span></code>. See
+<code class="docutils literal notranslate"><span class="pre">$HUBBLE_SDK/port/sisdk/hubble_config.h</span></code> for the available options and
+their defaults.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">Simplicity Studio</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Command line</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><p>In the Project Configurator, open <strong>Software Components</strong>, select
+<strong>Hubble Device SDK Component</strong>, and click <strong>Configure</strong>.</p>
+<img alt="Configuring the Hubble Device SDK Component" class="align-center step-image" src="../../_images/QuickStart_Silabs_Configure.webp" />
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><p>Set the options you want to change in your project’s <code class="docutils literal notranslate"><span class="pre">.slcp</span></code> file,
+e.g. to provide your own sequence counter:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">configuration</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SISDK_HUBBLE_NETWORK_SEQUENCE_NONCE_CUSTOM</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"1"</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="building-and-running-your-first-application">
+<h2>Building and Running Your First Application<a class="headerlink" href="#building-and-running-your-first-application" title="Link to this heading"></a></h2>
+<p>The following steps build and flash the <code class="docutils literal notranslate"><span class="pre">ble-beacon</span></code> sample. Replace
+<code class="docutils literal notranslate"><span class="pre">brd4187c</span></code> with your target board.</p>
+<p>Embed the device key and the current time into the sample sources:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$HUBBLE_SDK</span>/samples/freertos/silabs/ble-beacon
+<span class="nv">$HUBBLE_SDK</span>/tools/embed_key_time.py<span class="w"> </span>-b<span class="w"> </span>master.key<span class="w"> </span>-o<span class="w"> </span>src/
+</pre></div>
+</div>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">Simplicity Studio</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">Command line</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><p>Generate a Simplicity Studio project:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$SLC</span><span class="w"> </span>generate<span class="w"> </span>-tlcn<span class="w"> </span>gcc<span class="w"> </span>-np<span class="w"> </span>-p<span class="w"> </span>ble_beacon.slcp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-d<span class="w"> </span>/path/to/workspace/ble-beacon<span class="w"> </span>--with<span class="w"> </span>brd4187c
+</pre></div>
+</div>
+<p>Then in Simplicity Studio go to <strong>PROJECTS</strong> → <strong>Open Project(s)</strong>,
+select the generated <code class="docutils literal notranslate"><span class="pre">ble-beacon</span></code> directory, and build and flash as
+usual.</p>
+</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"><p>Build the application:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$SLC</span><span class="w"> </span>generate<span class="w"> </span>-tlcn<span class="w"> </span>gcc<span class="w"> </span>-o<span class="w"> </span>makefile<span class="w"> </span>-cp<span class="w"> </span>-p<span class="w"> </span>ble_beacon.slcp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-d<span class="w"> </span>generated_sample_app<span class="w"> </span>--with<span class="w"> </span>brd4187c
+<span class="nb">cd</span><span class="w"> </span>generated_sample_app
+make<span class="w"> </span>-f<span class="w"> </span>ble_beacon.Makefile
+</pre></div>
+</div>
+<p>Flash the application:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$COMMANDER</span><span class="w"> </span>flash<span class="w"> </span>build/debug/ble_beacon.s37
+</pre></div>
+</div>
+</div></div>
+<p>See the sample’s <code class="docutils literal notranslate"><span class="pre">README.md</span></code> for key formats and troubleshooting.</p>
 </section>
 </section>
 
@@ -487,8 +535,8 @@ system.</p></li>
           </div>
 
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../zephyr/index.html" class="btn btn-neutral float-left" title="Zephyr" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../ti/index.html" class="btn btn-neutral float-right" title="TI SDK (SysConfig)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../ti/index.html" class="btn btn-neutral float-left" title="TI SDK (SysConfig)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../esp-idf/index.html" class="btn btn-neutral float-right" title="ESP-IDF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
