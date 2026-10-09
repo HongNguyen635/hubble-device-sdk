@@ -246,6 +246,11 @@ int hubble_sat_dtm_power_set(int8_t power)
 	return hubble_sat_dtm_port_power_set(power);
 }
 
+int hubble_sat_dtm_fem_gain_set(uint8_t gain)
+{
+	return hubble_sat_dtm_port_fem_gain_set(gain);
+}
+
 int hubble_sat_dtm_cw_start(uint8_t channel)
 {
 	return hubble_sat_dtm_port_cw_start(channel);

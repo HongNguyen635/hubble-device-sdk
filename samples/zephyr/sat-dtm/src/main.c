@@ -65,6 +65,12 @@ int hubble_sat_board_power_set(int8_t power)
 	return 0;
 }
 
+int hubble_sat_board_fem_gain_set(uint8_t gain)
+{
+	ARG_UNUSED(gain);
+	return 0;
+}
+
 int hubble_sat_board_cw_start(uint8_t channel)
 {
 	ARG_UNUSED(channel);
@@ -168,6 +174,24 @@ static int cmd_power(const struct shell *sh, size_t argc, char **argv)
 	ret = hubble_sat_dtm_power_set((int8_t)power);
 	if (ret < 0) {
 		shell_print(sh, "Failed to set power\n");
+		return ret;
+	}
+
+	return 0;
+}
+
+static int cmd_fem_gain(const struct shell *sh, size_t argc, char **argv)
+{
+	int ret;
+
+	if (argc != 2) {
+		shell_error(sh, "Usage: fem_gain <value>");
+		return -EINVAL;
+	}
+
+	ret = hubble_sat_dtm_fem_gain_set((uint8_t)atoi(argv[1]));
+	if (ret < 0) {
+		shell_print(sh, "Failed to set FEM gain\n");
 		return ret;
 	}
 
@@ -391,7 +415,9 @@ static int cmd_toggle_log(const struct shell *sh, size_t argc, char **argv)
 	return 0;
 }
 
-SHELL_CMD_REGISTER(power, NULL, "Set transmission power in dBm", cmd_power);
+SHELL_CMD_REGISTER(power, NULL, "Set SoC TX power in dBm", cmd_power);
+SHELL_CMD_REGISTER(fem_gain, NULL, "Set FEM TX gain control value (1..31)",
+		   cmd_fem_gain);
 SHELL_CMD_REGISTER(channel, NULL, "Set frequency channel", cmd_channel);
 SHELL_CMD_REGISTER(wave, NULL, "Set a carrier wave", cmd_carrier_wave);
 SHELL_CMD_REGISTER(stop, NULL, "Stop ongoing operation", cmd_stop);

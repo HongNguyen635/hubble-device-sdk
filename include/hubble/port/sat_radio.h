@@ -125,6 +125,17 @@ int hubble_sat_dtm_port_packet_send(const struct hubble_sat_packet *packet,
 int hubble_sat_dtm_port_power_set(int8_t power);
 
 /**
+ * @brief Set the FEM TX gain control (port implementation).
+ *
+ * @param gain FEM gain control value.
+ *
+ * @retval 0        Success.
+ * @retval -EINVAL  Value out of range.
+ * @retval -ENOTSUP No FEM gain control on this board.
+ */
+int hubble_sat_dtm_port_fem_gain_set(uint8_t gain);
+
+/**
  * @brief Start continuous wave (CW) transmission (port implementation).
  *
  * Platform-specific implementation that begins transmitting an unmodulated

@@ -18,23 +18,8 @@
 #ifdef CONFIG_MPSL_FEM_ONLY
 #include <mpsl_fem_protocol_api.h>
 
-/* Frequency passed to the power split */
-#define FEM_SPLIT_FREQ_MHZ 2482
-
-/* From Fig 8, p.19 of the datasheet */
-static const mpsl_tx_power_split_t soc_to_fem_gain_table[] = {
-	{-8, 7}, /* 0 dBm */
-	{-4, 5}, /* 1 dBm */
-	{-8, 9}, /* 2 dBm */
-	{-8, 9}, /* 3 dBm */
-	{0, 4},  /* 4 dBm */
-	{0, 5},  /* 5 dBm */
-	{0, 5},  /* 6 dbm */
-	{3, 3},  /* 7 dBm */
-	{0, 6},  /* 8 dBm */
-	{0, 6},  /* 9 dBm */
-	{0, 7},  /* 10 dBm */
-};
+/* nRF21540 CONFREG0.TX_GAIN range (PS v1.2, 8.1.1) */
+#define NRF21540_TX_GAIN_MAX 31
 #endif
 
 int hubble_sat_board_init(void)
@@ -69,35 +54,21 @@ int hubble_sat_board_packet_send(const struct hubble_sat_packet_frames *packet)
 
 int hubble_sat_board_power_set(int8_t power)
 {
-#ifdef CONFIG_MPSL_FEM_ONLY
-	mpsl_tx_power_split_t split = {0};
-	int ret;
+	return hubble_sat_soc_power_set(power);
+}
 
-	if (power > 10) {
+int hubble_sat_board_fem_gain_set(uint8_t gain)
+{
+#ifdef CONFIG_MPSL_FEM_ONLY
+	if (gain <= 0 || gain > NRF21540_TX_GAIN_MAX) {
 		return -EINVAL;
 	}
 
-	if (power >= 0 && power <= 10) {
-		split.radio_tx_power =
-			soc_to_fem_gain_table[power].radio_tx_power;
-		split.fem_pa_power_control =
-			soc_to_fem_gain_table[power].fem_pa_power_control;
-	} else {
-		/* Split total power into SoC power + FEM gain, like radio_test */
-		(void)mpsl_fem_tx_power_split(power, &split, MPSL_PHY_BLE_1M,
-					      FEM_SPLIT_FREQ_MHZ, false);
-	}
-
-	ret = hubble_sat_soc_power_set(split.radio_tx_power);
-	if (ret != 0) {
-		return ret;
-	}
-
-	return (mpsl_fem_pa_power_control_set(split.fem_pa_power_control) == 0)
-		       ? 0
-		       : -EINVAL;
+	/* Applied by MPSL on the next PA activation */
+	return (mpsl_fem_pa_power_control_set(gain) == 0) ? 0 : -EINVAL;
 #else
-	return hubble_sat_soc_power_set(power);
+	ARG_UNUSED(gain);
+	return -ENOTSUP;
 #endif
 }
 

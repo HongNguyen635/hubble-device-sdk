@@ -88,6 +88,15 @@ int hubble_sat_board_packet_send(const struct hubble_sat_packet_frames *packet);
 int hubble_sat_board_power_set(int8_t power);
 
 /**
+ * @brief Set the FEM TX gain control.
+ *
+ * @param gain FEM gain control value.
+ *
+ * @return 0 on success, or a negative error code.
+ */
+int hubble_sat_board_fem_gain_set(uint8_t gain);
+
+/**
  * @brief Start continuous wave (CW) transmission on the specified channel.
  *
  * @param channel RF channel index to transmit on.

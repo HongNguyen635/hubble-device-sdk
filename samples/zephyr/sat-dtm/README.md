@@ -46,7 +46,8 @@ This sample adds the following commands to the Zephyr shell:
 
 | Command                 | Description                                                                  | Arguments                    |
 | :---------------------- | :--------------------------------------------------------------------------- | :--------------------------- |
-| `power`                 | Set the radio TX power in dBm.                                               | `<dBm>`                      |
+| `power`                 | Set the SoC radio TX power in dBm.                                           | `<dBm>`                      |
+| `fem_gain`              | Set the FEM TX gain control value (nRF21540: 0..31).                         | `<value>`                    |
 | `channel`               | Set the frequency channel.                                                   | `<0..18>`                    |
 | `payload`               | Set the payload length in bytes, or `-1` for single-frame mode (16 symbols). | `-1`, `0`, `4`, `9`, or `13` |
 | `transmit`              | Transmit a single packet on the current channel.                             | None                         |

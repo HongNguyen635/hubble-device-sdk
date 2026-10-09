@@ -70,6 +70,20 @@ int hubble_sat_dtm_packet_send(enum hubble_sat_dtm_packet_type type,
 int hubble_sat_dtm_power_set(int8_t power);
 
 /**
+ * @brief Set the front-end module (FEM) TX gain control.
+ *
+ * The value is FEM specific (nRF21540: TX_GAIN register, 0..31).
+ * Use with @ref hubble_sat_dtm_power_set, which sets the SoC power only.
+ *
+ * @param gain FEM gain control value.
+ *
+ * @retval 0        Success.
+ * @retval -EINVAL  Value out of range.
+ * @retval -ENOTSUP No FEM gain control on this board.
+ */
+int hubble_sat_dtm_fem_gain_set(uint8_t gain);
+
+/**
  * @brief Start continuous wave (CW) transmission.
  *
  * Begins transmitting an unmodulated carrier on the specified channel.
