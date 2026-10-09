@@ -13,6 +13,64 @@
 
 #include "fem.h"
 
+#ifdef CONFIG_MPSL_FEM_ONLY
+
+#include <zephyr/kernel.h>
+#include <hal/nrf_timer.h>
+#include <mpsl_fem_protocol_api.h>
+#include <hubble/port/sat_radio.h>
+
+static mpsl_fem_event_t _fem_pa_on = {
+	.type = MPSL_FEM_EVENT_TYPE_TIMER,
+	.event.timer = {
+		/* Must match the TX timer in nrf52_soc.c (TIMER0, CC0/CC1 used) */
+		.p_timer_instance = NRF_TIMER0,
+		.compare_channel_mask = BIT(NRF_TIMER_CC_CHANNEL2) |
+					BIT(NRF_TIMER_CC_CHANNEL3),
+		/* Radio READY, counted from TIMER0 start */
+		.counter_period.end = HUBBLE_WAIT_SYMBOL_OFF_US,
+	},
+};
+
+void hubble_board_fem_setup(void)
+{
+}
+
+void hubble_board_fem_enable(void)
+{
+	mpsl_fem_enable();
+	/* No deactivate event: PA stays on until hubble_board_fem_sleep() */
+	(void)mpsl_fem_pa_configuration_set(&_fem_pa_on, NULL);
+}
+
+void hubble_board_fem_cw_enable(void)
+{
+	hubble_board_fem_enable();
+
+	/* CW triggers TXEN directly, not from TIMER0. Run TIMER0 once so
+	 * MPSL switches the PA on. TIMER0 -> RADIO PPI is off outside
+	 * packet_send, so this does not touch the radio.
+	 */
+	nrf_timer_task_trigger(NRF_TIMER0, NRF_TIMER_TASK_CLEAR);
+	nrf_timer_task_trigger(NRF_TIMER0, NRF_TIMER_TASK_START);
+	k_busy_wait(HUBBLE_WAIT_SYMBOL_OFF_US);
+	nrf_timer_task_trigger(NRF_TIMER0, NRF_TIMER_TASK_STOP);
+}
+
+void hubble_board_fem_bypass(void)
+{
+	/* nRF21540 has no bypass, same as the GPIO version: power down */
+	hubble_board_fem_sleep();
+}
+
+void hubble_board_fem_sleep(void)
+{
+	mpsl_fem_deactivate_now(MPSL_FEM_PA);
+	(void)mpsl_fem_pa_configuration_clear();
+	(void)mpsl_fem_disable();
+}
+
+#else /* !CONFIG_MPSL_FEM_ONLY */
 
 #if DT_NODE_HAS_PROP(DT_NODELABEL(radio), fem)
 #define FEM_NODE DT_PHANDLE(DT_NODELABEL(radio), fem)
@@ -133,6 +191,11 @@ void hubble_board_fem_enable(void)
 #endif
 }
 
+void hubble_board_fem_cw_enable(void)
+{
+	hubble_board_fem_enable();
+}
+
 void hubble_board_fem_bypass(void)
 {
 #ifdef HAL_RADIO_GPIO_HAVE_PA_PIN
@@ -163,3 +226,5 @@ void hubble_board_fem_sleep(void)
 	NRF_GPIO_PDN->OUTCLR = BIT(NRF_GPIO_PDN_PIN);
 #endif
 }
+
+#endif /* CONFIG_MPSL_FEM_ONLY */
