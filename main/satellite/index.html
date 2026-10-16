@@ -146,6 +146,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reliability.html">Reliability and Power Consumption</a></li>
 <li class="toctree-l3"><a class="reference internal" href="clock-drift.html">Clock Drift Compensation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="board-support.html">Supporting New Boards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="companion-tool.html">Dual-Stack Companion Tool</a></li>
 </ul>
 </li>
 </ul>
@@ -231,6 +232,22 @@
 <li class="toctree-l3"><a class="reference internal" href="../integration_guides/ti/index.html#verifying-the-application">Verifying the Application</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../integration_guides/ti/index.html#troubleshooting">Troubleshooting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../integration_guides/ti/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integration_guides/silabs/index.html">SiLabs (FreeRTOS) Integration Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#supported-devices-and-sdk-version">Supported Devices and SDK Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#create-your-hubble-account">Create your Hubble Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#sdk-setup">SDK Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#project-configuration">Project Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#preparing-for-satellite-transmission">Preparing for Satellite Transmission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#handling-the-hubble-device-key">Handling the Hubble Device Key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#initializing-the-hubble-device-sdk">Initializing the Hubble Device SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#the-pass-prediction-loop">The Pass Prediction Loop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#building-and-flashing">Building and Flashing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#verifying-the-application">Verifying the Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration_guides/silabs/index.html#next-steps">Next Steps</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../integration_guides/esp-idf/index.html">ESP-IDF Integration Guide</a><ul>
@@ -506,7 +523,8 @@ valid for as long as pass prediction is used.</p>
 for the SDK to predict when it can be reached from the device location.
 Provision these values from a trusted source such as a companion application,
 BLE provisioning flow, manufacturing data, or another backend channel.</p>
-<p>The dual-stack samples provision orbital parameters over BLE. The provisioning
+<p>The dual-stack samples provision orbital parameters over BLE, from the
+<a class="reference internal" href="companion-tool.html#hubble-satellite-companion-tool"><span class="std std-ref">Dual-Stack Companion Tool</span></a> running on a host. The provisioning
 payload maps directly to <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">hubble_sat_orbital_params</span></code> fields:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sat</span><span class="o">-&gt;</span><span class="n">t0</span><span class="p">,</span><span class="w">           </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">  </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">));</span>
 <span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sat</span><span class="o">-&gt;</span><span class="n">n0</span><span class="p">,</span><span class="w">           </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">  </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
@@ -616,7 +634,8 @@ then stops BLE and transmits over the satellite radio during the pass window.</p
 <p>Typical workflow:</p>
 <ol class="arabic simple">
 <li><p>Start BLE provisioning.</p></li>
-<li><p>Receive Unix time, device location, and satellite orbital parameters.</p></li>
+<li><p>Receive Unix time, device location, and satellite orbital parameters. The
+samples receive them from the <a class="reference internal" href="companion-tool.html#hubble-satellite-companion-tool"><span class="std std-ref">Dual-Stack Companion Tool</span></a>.</p></li>
 <li><p>Initialize the Hubble Device SDK with the provisioned Unix time and key.</p></li>
 <li><p>Register orbital parameters with <code class="xref c c-func docutils literal notranslate"><span class="pre">hubble_sat_satellites_set()</span></code>.</p></li>
 <li><p>Compute the next pass with <code class="xref c c-func docutils literal notranslate"><span class="pre">hubble_sat_next_pass_get()</span></code>.</p></li>
