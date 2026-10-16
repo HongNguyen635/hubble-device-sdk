@@ -229,7 +229,7 @@ static int _whitening(uint8_t seed, uint8_t *symbols, size_t len)
 	seed = 0x40 | seed;
 	state = (3 << 5) | seed;
 
-	for (int i = 0; i < len * 6; i++) {
+	for (size_t i = 0; i < len * 6; i++) {
 		int fb;
 
 		/*pack 6 bits into one symbol (MSB-first within the 6-bit symbol) */
