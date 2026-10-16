@@ -116,6 +116,9 @@ bool hubble_internal_nonce_values_check(uint32_t time_counter, uint16_t seq_no)
 
 	_check_seq_no = seq_no;
 
+#else
+	(void)time_counter;
+	(void)seq_no;
 #endif /* CONFIG_HUBBLE_NETWORK_SECURITY_ENFORCE_NONCE_CHECK */
 	return true;
 }
