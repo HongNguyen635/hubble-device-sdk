@@ -103,6 +103,8 @@ HUBBLE_WEAK int hubble_rand_get(uint8_t *buffer, size_t len)
 
 HUBBLE_WEAK int hubble_log(enum hubble_log_level level, const char *format, ...)
 {
+	(void)level;
+	(void)format;
 	return 0;
 }
 
