@@ -240,5 +240,6 @@ menu "Logging"
 
 endmenu
 
+rsource "Kconfig.espressif"
 rsource "Kconfig.nrf"
 rsource "Kconfig.silabs"

@@ -31,6 +31,7 @@ if(CONFIG_HUBBLE_SAT_NETWORK)
 	endif()
 
 	add_subdirectory_ifdef(CONFIG_SOC_COMPATIBLE_NRF boards/nordic)
+	add_subdirectory_ifdef(CONFIG_SOC_FAMILY_ESPRESSIF_ESP32 boards/espressif)
 	if(CONFIG_SOC_VENDOR_SILABS_HAS_RADIO OR CONFIG_SOC_GECKO_HAS_RADIO)
 		add_subdirectory(boards/silabs/efr32)
 	endif()

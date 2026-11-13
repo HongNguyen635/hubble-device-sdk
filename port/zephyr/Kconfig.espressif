@@ -1,0 +1,12 @@
+# Copyright (c) 2026 Hubble Network, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+if SOC_FAMILY_ESPRESSIF_ESP32
+
+configdefault BT
+        default y
+
+configdefault COUNTER
+        default y
+
+endif # SOC_FAMILY_ESPRESSIF_ESP32
