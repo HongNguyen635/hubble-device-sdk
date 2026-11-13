@@ -10,6 +10,10 @@
 #include <zephyr/logging/log.h>
 #include <zephyr/sys/base64.h>
 
+#ifdef CONFIG_SOC_FAMILY_ESPRESSIF_ESP32
+#include <zephyr/bluetooth/bluetooth.h>
+#endif
+
 #include <errno.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -91,6 +95,14 @@ int main(void)
 	if (err != 0) {
 		goto end;
 	}
+
+#ifdef CONFIG_SOC_FAMILY_ESPRESSIF_ESP32
+	err = bt_enable(NULL);
+	if (err != 0) {
+		LOG_ERR("Bluetooth init failed (err %d)", err);
+		goto end;
+	}
+#endif /* CONFIG_SOC_FAMILY_ESPRESSIF_ESP32 */
 
 	/*
 	 * This sample uses the device uptime counter source
